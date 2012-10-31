@@ -1,0 +1,242 @@
+<?php
+
+/**
+ * Network report class.
+ *
+ * @category   Apps
+ * @package    Network_Report
+ * @subpackage Libraries
+ * @author     ClearFoundation <developer@clearfoundation.com>
+ * @copyright  2012 ClearFoundation
+ * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
+ * @link       http://www.clearfoundation.com/docs/developer/apps/network_report/
+ */
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+// N A M E S P A C E
+///////////////////////////////////////////////////////////////////////////////
+
+namespace clearos\apps\network_report;
+
+///////////////////////////////////////////////////////////////////////////////
+// B O O T S T R A P
+///////////////////////////////////////////////////////////////////////////////
+
+$bootstrap = getenv('CLEAROS_BOOTSTRAP') ? getenv('CLEAROS_BOOTSTRAP') : '/usr/clearos/framework/shared';
+require_once $bootstrap . '/bootstrap.php';
+
+///////////////////////////////////////////////////////////////////////////////
+// T R A N S L A T I O N S
+///////////////////////////////////////////////////////////////////////////////
+
+clearos_load_language('base');
+clearos_load_language('network');
+
+///////////////////////////////////////////////////////////////////////////////
+// D E P E N D E N C I E S
+///////////////////////////////////////////////////////////////////////////////
+
+use \clearos\apps\network\Network_Stats as Network_Stats;
+use \clearos\apps\reports_database\Database_Report as Database_Report;
+
+clearos_load_library('network/Network_Stats');
+clearos_load_library('reports_database/Database_Report');
+
+///////////////////////////////////////////////////////////////////////////////
+// C L A S S
+///////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Network report class.
+ *
+ * @category   Apps
+ * @package    Network_Report
+ * @subpackage Libraries
+ * @author     ClearFoundation <developer@clearfoundation.com>
+ * @copyright  2012 ClearFoundation
+ * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
+ * @link       http://www.clearfoundation.com/docs/developer/apps/network_report/
+ */
+
+class Network_Report extends Database_Report
+{
+    ///////////////////////////////////////////////////////////////////////////////
+    // M E T H O D S
+    ///////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Network report constructor.
+     */
+
+    public function __construct()
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        parent::__construct();
+    }
+
+    /**
+     * Returns load summary data.
+     *
+     * @return array load summary data
+     * @throws Engine_Exception
+     */
+
+    public function get_data($range = 'today', $records = NULL)
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        // Get report data
+        //----------------
+
+        $sql['select'] = 'rx_rate, tx_rate, timestamp';
+        $sql['from'] = 'network';
+        $sql['where'] = 'iface = \'eth1\''; // FIXME
+        $sql['group_by'] = '';
+        $sql['order_by'] = 'timestamp DESC';
+
+        $options['range'] = $range;
+        $options['cache_time'] = 0; // FIXME: no cache for testing
+
+        $entries = $this->_run_query('network', $sql, $options);
+
+        // Format report data
+        //-------------------
+
+        $info = $this->get_report_info('iface');
+
+        $report_data = array();
+        $report_data['header'] = $info['headers'];
+        $report_data['type'] = $info['types'];
+
+        foreach ($entries as $entry) {
+            $report_data['data'][] = array(
+                $entry['timestamp'], 
+                (int) round(8 * ($entry['rx_rate'] / 1024)),
+                (int) round(8 * ($entry['tx_rate'] / 1024))
+            );
+        }
+
+        // Add format information
+        //-----------------------
+
+        $report_data['format'] = array(
+            'series_units' => lang('base_kilobits_per_second'),
+        );
+
+        return $report_data;
+    }
+
+    /**
+     * Inserts network data into database.
+     *
+     * @return void
+     * @throws Engine_Exception
+     */
+
+    public function insert_data()
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        // Get stats
+        //----------
+
+        $network_stats = new Network_Stats();
+        $stats = $network_stats->get_interface_stats_and_rates();
+
+        // Insert report data
+        //-------------------
+
+        foreach ($stats as $iface => $details) { 
+            $sql['insert'] = "network (`iface`, `rx_bytes`, `rx_packets`, `rx_errors`, `rx_drop`, `rx_rate`, `tx_bytes`, `tx_packets`, `tx_errors`, `tx_drop`, `tx_rate`)";
+
+            $sql['values'] = 
+                "'" . $iface . "'," .
+                $details['rx_bytes'] . ',' .
+                $details['rx_packets'] . ',' .
+                $details['rx_errors'] . ',' .
+                $details['rx_drop'] . ',' .
+                $details['rx_rate'] . ',' .
+                $details['tx_bytes'] . ',' .
+                $details['tx_packets'] . ',' .
+                $details['tx_errors'] . ',' .
+                $details['tx_drop'] . ',' .
+                $details['tx_rate'] 
+            ;
+
+            $this->_run_insert('network', $sql);
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // P R I V A T E   M E T H O D S
+    ///////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Report engine definition.
+     *
+     * @return array report definition
+     */
+    
+    protected function _get_definition()
+    {
+        // Overview
+        //---------
+
+        $reports['overview'] = array(
+            'title' => lang('base_overview'),
+            'url' => 'network_report',
+            'app' => 'network_report',
+            'report' => 'overview',
+        );
+
+        // Network_interfaces
+        //-------------------
+
+$ifaces = array('eth0', 'eth1');
+
+        foreach ($ifaces as $iface) {
+            $reports['iface_' . $iface] = array(
+                'title' => lang('network_interface') . ' - ' . $iface,
+                'method' => 'get_data',
+                'app' => 'network_report',
+                'url' => 'network_report/iface/index/' . $iface . '/full',
+                'report' => 'iface_' . $iface,
+                'chart_type' => 'line',
+                'library' => 'Network_Report',
+                'headers' => array(
+                    lang('base_date'),
+                    lang('network_received'),
+                    lang('network_transmitted'),
+                ),
+                'types' => array(
+                    'timestamp',
+                    'int',
+                    'int'
+                ),
+            );
+        }
+
+        // Done
+        //-----
+
+        return $reports;
+    }
+}
