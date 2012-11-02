@@ -53,9 +53,11 @@ clearos_load_language('network');
 // D E P E N D E N C I E S
 ///////////////////////////////////////////////////////////////////////////////
 
+use \clearos\apps\network\Iface_Manager as Iface_Manager;
 use \clearos\apps\network\Network_Stats as Network_Stats;
 use \clearos\apps\reports_database\Database_Report as Database_Report;
 
+clearos_load_library('network/Iface_Manager');
 clearos_load_library('network/Network_Stats');
 clearos_load_library('reports_database/Database_Report');
 
@@ -95,11 +97,14 @@ class Network_Report extends Database_Report
     /**
      * Returns load summary data.
      *
+     * @param string $iface interface
+     * @param string $range range information
+     *
      * @return array load summary data
      * @throws Engine_Exception
      */
 
-    public function get_data($range = 'today', $records = NULL)
+    public function get_interface_data($iface, $range = 'today')
     {
         clearos_profile(__METHOD__, __LINE__);
 
@@ -108,19 +113,18 @@ class Network_Report extends Database_Report
 
         $sql['select'] = 'rx_rate, tx_rate, timestamp';
         $sql['from'] = 'network';
-        $sql['where'] = 'iface = \'eth1\''; // FIXME
+        $sql['where'] = 'iface = \'' .  $iface . '\'';
         $sql['group_by'] = '';
         $sql['order_by'] = 'timestamp DESC';
 
         $options['range'] = $range;
-        $options['cache_time'] = 0; // FIXME: no cache for testing
 
         $entries = $this->_run_query('network', $sql, $options);
 
         // Format report data
         //-------------------
 
-        $info = $this->get_report_info('iface');
+        $info = $this->get_report_info($iface);
 
         $report_data = array();
         $report_data['header'] = $info['headers'];
@@ -165,10 +169,11 @@ class Network_Report extends Database_Report
         //-------------------
 
         foreach ($stats as $iface => $details) { 
-            $sql['insert'] = "network (`iface`, `rx_bytes`, `rx_packets`, `rx_errors`, `rx_drop`, `rx_rate`, `tx_bytes`, `tx_packets`, `tx_errors`, `tx_drop`, `tx_rate`)";
+            $sql['insert'] = "network (`iface`, `rx_bytes`, `rx_packets`, `rx_errors`, `rx_drop`, `rx_rate`, " +
+                "`tx_bytes`, `tx_packets`, `tx_errors`, `tx_drop`, `tx_rate`)";
 
-            $sql['values'] = 
-                "'" . $iface . "'," .
+            $sql['values']
+                = "'" . $iface . "'," .
                 $details['rx_bytes'] . ',' .
                 $details['rx_packets'] . ',' .
                 $details['rx_errors'] . ',' .
@@ -178,8 +183,7 @@ class Network_Report extends Database_Report
                 $details['tx_packets'] . ',' .
                 $details['tx_errors'] . ',' .
                 $details['tx_drop'] . ',' .
-                $details['tx_rate'] 
-            ;
+                $details['tx_rate']; 
 
             $this->_run_insert('network', $sql);
         }
@@ -197,30 +201,18 @@ class Network_Report extends Database_Report
     
     protected function _get_definition()
     {
-        // Overview
-        //---------
+        $iface_manager = new Iface_Manager();
 
-        $reports['overview'] = array(
-            'title' => lang('base_overview'),
-            'url' => 'network_report',
-            'app' => 'network_report',
-            'report' => 'overview',
-        );
-
-        // Network_interfaces
-        //-------------------
-
-$ifaces = array('eth0', 'eth1');
+        $ifaces = $iface_manager->get_interfaces();
 
         foreach ($ifaces as $iface) {
-            $reports['iface_' . $iface] = array(
-                'title' => lang('network_interface') . ' - ' . $iface,
-                'method' => 'get_data',
+            $reports[$iface] = array(
                 'app' => 'network_report',
-                'url' => 'network_report/iface/index/' . $iface . '/full',
-                'report' => 'iface_' . $iface,
+                'title' => lang('network_interface') . ' - ' . $iface,
+                'basename' => 'iface',
+                'key_value' => $iface,
+                'api_data' => 'get_interface_data',
                 'chart_type' => 'line',
-                'library' => 'Network_Report',
                 'headers' => array(
                     lang('base_date'),
                     lang('network_received'),

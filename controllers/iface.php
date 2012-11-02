@@ -59,6 +59,6 @@ class Iface extends Report_Controller
 
     function __construct()
     {
-        parent::__construct('network_report', 'Network_Report', 'iface_eth0');
+        parent::__construct('network_report', 'Network_Report');
     }
 }

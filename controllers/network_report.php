@@ -60,7 +60,7 @@ class Network_Report extends Report_Controller
     function __construct()
     {
         $reports = array(
-            'network_report/external',
+            'network_report/iface',
         );
 
         parent::__construct('network_report', 'Network_Report', 'overview', $reports);
