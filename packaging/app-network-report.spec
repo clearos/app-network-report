@@ -1,7 +1,7 @@
 
 Name: app-network-report
 Epoch: 1
-Version: 1.4.1
+Version: 1.4.2
 Release: 1%{dist}
 Summary: Network Report
 License: GPLv3
@@ -12,20 +12,20 @@ Requires: %{name}-core = 1:%{version}-%{release}
 Requires: app-base
 
 %description
-The Network Report provides bandwidth information on all your network interfaces.
+The Network Report provides network throughput information on all your network interfaces.
 
 %package core
 Summary: Network Report - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
-Requires: app-network-core >= 1:1.4.1
-Requires: app-reports-core
-Requires: app-reports-database-core
+Requires: app-network-core >= 1:1.4.2
+Requires: app-reports-core >= 1:1.4.2
+Requires: app-reports-database-core >= 1:1.4.2
 Requires: app-tasks-core
 
 %description core
-The Network Report provides bandwidth information on all your network interfaces.
+The Network Report provides network throughput information on all your network interfaces.
 
 This package provides the core API and libraries.
 
