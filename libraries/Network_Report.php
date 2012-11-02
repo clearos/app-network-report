@@ -169,7 +169,7 @@ class Network_Report extends Database_Report
         //-------------------
 
         foreach ($stats as $iface => $details) { 
-            $sql['insert'] = "network (`iface`, `rx_bytes`, `rx_packets`, `rx_errors`, `rx_drop`, `rx_rate`, " +
+            $sql['insert'] = "network (`iface`, `rx_bytes`, `rx_packets`, `rx_errors`, `rx_drop`, `rx_rate`, " .
                 "`tx_bytes`, `tx_packets`, `tx_errors`, `tx_drop`, `tx_rate`)";
 
             $sql['values']
