@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'network_report';
-$app['version'] = '1.4.2.1';
+$app['version'] = '1.4.3';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -33,7 +33,7 @@ $app['controllers']['settings']['title'] = lang('base_settings');
 /////////////////////////////////////////////////////////////////////////////
 
 $app['core_requires'] = array(
-    'app-network-core >= 1:1.4.2',
+    'app-network-core >= 1:1.4.3',
     'app-reports-core >= 1:1.4.2',
     'app-reports-database-core >= 1:1.4.2',
     'app-tasks-core',
