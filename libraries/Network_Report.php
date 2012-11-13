@@ -111,11 +111,8 @@ class Network_Report extends Database_Report
         // Get report data
         //----------------
 
-        $sql['select'] = 'rx_rate, tx_rate, timestamp';
-        $sql['from'] = 'network';
-        $sql['where'] = 'iface = \'' .  $iface . '\'';
-        $sql['group_by'] = '';
-        $sql['order_by'] = 'timestamp DESC';
+        $sql['timeline_select'] = array('rx_rate', 'tx_rate');
+        $sql['timeline_from'] = 'network';
 
         $options['range'] = $range;
 
@@ -210,9 +207,9 @@ class Network_Report extends Database_Report
                 'app' => 'network_report',
                 'title' => lang('network_interface') . ' - ' . $iface,
                 'basename' => 'iface',
-                'key_value' => $iface,
                 'api_data' => 'get_interface_data',
-                'chart_type' => 'line',
+                'key_value' => $iface,
+                'chart_type' => 'timeline',
                 'headers' => array(
                     lang('base_date'),
                     lang('network_received'),
