@@ -121,11 +121,7 @@ class Network_Report extends Database_Report
         // Format report data
         //-------------------
 
-        $info = $this->get_report_info($iface);
-
-        $report_data = array();
-        $report_data['header'] = $info['headers'];
-        $report_data['type'] = $info['types'];
+        $report_data = $this->_get_data_info($iface);
 
         foreach ($entries as $entry) {
             $report_data['data'][] = array(
@@ -134,13 +130,6 @@ class Network_Report extends Database_Report
                 (int) round(8 * ($entry['tx_rate'] / 1024))
             );
         }
-
-        // Add format information
-        //-----------------------
-
-        $report_data['format'] = array(
-            'series_units' => lang('base_kilobits_per_second'),
-        );
 
         return $report_data;
     }
@@ -210,6 +199,9 @@ class Network_Report extends Database_Report
                 'api_data' => 'get_interface_data',
                 'key_value' => $iface,
                 'chart_type' => 'timeline',
+                'format' => array(
+                    'series_units' => lang('base_kilobits_per_second'),
+                ),
                 'headers' => array(
                     lang('base_date'),
                     lang('network_received'),
