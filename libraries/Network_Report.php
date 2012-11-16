@@ -200,7 +200,8 @@ class Network_Report extends Database_Report
                 'key_value' => $iface,
                 'chart_type' => 'timeline',
                 'format' => array(
-                    'series_units' => lang('base_kilobits_per_second'),
+                    'series_label' => lang('base_kilobits_per_second'),
+                    'baseline_format' => 'timestamp',
                 ),
                 'headers' => array(
                     lang('base_date'),
