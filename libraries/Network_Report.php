@@ -113,6 +113,7 @@ class Network_Report extends Database_Report
 
         $sql['timeline_select'] = array('rx_rate', 'tx_rate');
         $sql['timeline_from'] = 'network';
+        $sql['timeline_where'] = 'iface = \'' . $iface . '\'';
 
         $options['range'] = $range;
 
