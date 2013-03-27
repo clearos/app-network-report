@@ -146,6 +146,11 @@ class Network_Report extends Database_Report
     {
         clearos_profile(__METHOD__, __LINE__);
 
+        // Initialize
+        //-----------
+
+        $this->_initialize_tables('network_report', 'network');
+
         // Get stats
         //----------
 
