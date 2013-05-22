@@ -4,9 +4,9 @@
 /**
  * Database import tool for network traffic.
  *
- * @category   Apps
- * @package    Network_Report
- * @subpackage Scripts
+ * @category   apps
+ * @package    network-report
+ * @subpackage scripts
  * @author     ClearCenter <developer@clearcenter.com>
  * @copyright  2012 ClearCenter
  * @license    http://www.clearcenter.com/app_license ClearCenter license
