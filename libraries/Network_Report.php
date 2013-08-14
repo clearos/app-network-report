@@ -7,7 +7,7 @@
  * @package    network-report
  * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2012 ClearFoundation
+ * @copyright  2012-2013 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/network_report/
  */
@@ -72,7 +72,7 @@ clearos_load_library('reports_database/Database_Report');
  * @package    network-report
  * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2012 ClearFoundation
+ * @copyright  2012-2013 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/network_report/
  */
@@ -218,6 +218,11 @@ class Network_Report extends Database_Report
                     'timestamp',
                     'int',
                     'int'
+                ),
+                'chart_series' => array(
+                    FALSE,
+                    TRUE,
+                    TRUE
                 ),
             );
         }
