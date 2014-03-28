@@ -24,21 +24,38 @@ require_once $bootstrap . '/bootstrap.php';
 // T R A N S L A T I O N S
 ///////////////////////////////////////////////////////////////////////////////
 
+clearos_load_language('base');
 clearos_load_language('network_report');
 
 ///////////////////////////////////////////////////////////////////////////////
 // D E P E N D E N C I E S
 ///////////////////////////////////////////////////////////////////////////////
 
+use \clearos\apps\base\Script as Script;
 use \clearos\apps\network_report\Network_Report as Network_Report;
 
+clearos_load_library('base/Script');
 clearos_load_library('network_report/Network_Report');
 
 ///////////////////////////////////////////////////////////////////////////////
 // M A I N
 ///////////////////////////////////////////////////////////////////////////////
 
+$script = new Script();
 $report = new Network_Report();
-$report->insert_data();
+if ($script->lock() !== TRUE) {
+    echo lang('base_script_already_running') . "\n";
+    exit(0);
+} else {
+    try {
+        $report->insert_data();
+        $script->unlock();
+        exit(0);
+    } catch (Exception $e) {
+        echo clearos_exception_message($e) . "\n";
+        $script->unlock();
+        exit(1);
+    }
+}
 
 // vim: syntax=php ts=4

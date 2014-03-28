@@ -1,7 +1,7 @@
 
 Name: app-network-report
 Epoch: 1
-Version: 1.5.0
+Version: 1.5.1
 Release: 1%{dist}
 Summary: Network Report
 License: GPLv3
@@ -71,12 +71,10 @@ exit 0
 %defattr(-,root,root)
 /usr/clearos/apps/network_report/controllers
 /usr/clearos/apps/network_report/htdocs
-/usr/clearos/apps/network_report/views
 
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/network_report/packaging
-%exclude /usr/clearos/apps/network_report/tests
 %dir /usr/clearos/apps/network_report
 /usr/clearos/apps/network_report/deploy
 /usr/clearos/apps/network_report/language
