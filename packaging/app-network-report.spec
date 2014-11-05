@@ -1,7 +1,7 @@
 
 Name: app-network-report
 Epoch: 1
-Version: 2.0.1
+Version: 2.0.5
 Release: 1%{dist}
 Summary: Network Report
 License: GPLv3
