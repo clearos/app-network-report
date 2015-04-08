@@ -193,9 +193,10 @@ class Network_Report extends Database_Report
     
     protected function _get_definition()
     {
-        $iface_manager = new Iface_Manager();
+        clearos_profile(__METHOD__, __LINE__);
 
-        $ifaces = $iface_manager->get_interfaces();
+        $network_stats = new Network_Stats();
+        $ifaces = $network_stats->get_interfaces();
 
         foreach ($ifaces as $iface) {
             $reports[$iface] = array(

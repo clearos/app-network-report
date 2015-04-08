@@ -19,7 +19,7 @@ Summary: Network Report - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
-Requires: app-network-core >= 1:1.4.3
+Requires: app-network-core >= 1:2.0.24
 Requires: app-reports-core >= 1:1.4.8
 Requires: app-reports-database-core >= 1:1.4.30
 Requires: app-tasks-core
