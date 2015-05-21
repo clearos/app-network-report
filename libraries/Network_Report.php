@@ -7,7 +7,7 @@
  * @package    network-report
  * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2012-2013 ClearFoundation
+ * @copyright  2012-2015 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/network_report/
  */
@@ -72,7 +72,7 @@ clearos_load_library('reports_database/Database_Report');
  * @package    network-report
  * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2012-2013 ClearFoundation
+ * @copyright  2012-2015 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/network_report/
  */
@@ -193,9 +193,10 @@ class Network_Report extends Database_Report
     
     protected function _get_definition()
     {
-        $iface_manager = new Iface_Manager();
+        clearos_profile(__METHOD__, __LINE__);
 
-        $ifaces = $iface_manager->get_interfaces();
+        $network_stats = new Network_Stats();
+        $ifaces = $network_stats->get_interfaces();
 
         foreach ($ifaces as $iface) {
             $reports[$iface] = array(

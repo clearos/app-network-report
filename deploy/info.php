@@ -33,7 +33,7 @@ $app['controllers']['settings']['title'] = lang('base_settings');
 /////////////////////////////////////////////////////////////////////////////
 
 $app['core_requires'] = array(
-    'app-network-core >= 1:1.4.3',
+    'app-network-core >= 1:1.6.11',
     'app-reports-core >= 1:1.4.8',
     'app-reports-database-core >= 1:1.4.30',
     'app-tasks-core',
