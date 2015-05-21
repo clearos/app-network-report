@@ -1,7 +1,7 @@
 
 Name: app-network-report
 Epoch: 1
-Version: 1.6.7
+Version: 1.6.8
 Release: 1%{dist}
 Summary: Network Report
 License: GPLv3
@@ -19,7 +19,7 @@ Summary: Network Report - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
-Requires: app-network-core >= 1:1.4.3
+Requires: app-network-core >= 1:1.6.11
 Requires: app-reports-core >= 1:1.4.8
 Requires: app-reports-database-core >= 1:1.4.30
 Requires: app-tasks-core
