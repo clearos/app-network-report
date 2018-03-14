@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Гузориши Шабакаи иттилоотии throughput дар ҳамаи интерфейсҳои шабакаи шумо пешкаш мекунад.';
-$lang['network_report_app_name'] = 'Њисобот оид ба шабакаи';
+$lang['network_report_app_description'] = 'Ҳисоботи шабакавӣ иттилооти интиқоли шабакаро дар ҳамаи интерфейси шабакавии худ таъмин мекунад.';
+$lang['network_report_app_name'] = 'Ҳисоботи шабака';
