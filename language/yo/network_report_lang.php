@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'The Network Iroyin pese nẹtiwọki losi alaye lori gbogbo nẹtiwọki rẹ atọkun.';
-$lang['network_report_app_name'] = 'Network Iroyin';
+$lang['network_report_app_description'] = 'Iroyin nẹtiwọki n pese alaye iyasọtọ nẹtiwọki lori gbogbo awọn iṣakoso nẹtiwọki rẹ.';
+$lang['network_report_app_name'] = 'Iroyin nẹtiwọki';
