@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'The Network Report veitir net afköst upplýsingar um allar netviðmóta.';
-$lang['network_report_app_name'] = 'net Report';
+$lang['network_report_app_description'] = 'Netskýrslan veitir upplýsingar um netþjöppun á öllum netviðskiptum þínum.';
+$lang['network_report_app_name'] = 'Netskýrsla';
