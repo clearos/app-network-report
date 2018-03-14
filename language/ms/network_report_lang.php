@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Laporan Network menyediakan rangkaian maklumat throughput pada semua antara muka rangkaian anda.';
-$lang['network_report_app_name'] = 'Laporan Network';
+$lang['network_report_app_description'] = 'Laporan Rangkaian menyediakan maklumat throughput rangkaian pada semua antara muka rangkaian anda.';
+$lang['network_report_app_name'] = 'Laporan Rangkaian';
