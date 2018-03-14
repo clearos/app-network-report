@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Poročilo Mreža zagotavlja omrežno prepustnost informacije o vseh omrežnih vmesnikov.';
-$lang['network_report_app_name'] = 'Poročilo omrežja';
+$lang['network_report_app_description'] = 'Poročilo o omrežju vsebuje informacije o pretočnem omrežju na vseh vaših omrežnih vmesnikih.';
+$lang['network_report_app_name'] = 'Omrežno poročilo';
