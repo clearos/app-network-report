@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Võrgustik aruanne pakub võrgu läbilaskevõime teavet kõigi oma võrgu liidesed.';
-$lang['network_report_app_name'] = 'võrgu aruanne';
+$lang['network_report_app_description'] = 'Võrguaruanne näitab võrgu läbilaskevõimet kõigis teie võrguliidesetes.';
+$lang['network_report_app_name'] = 'Võrguaruanne';
