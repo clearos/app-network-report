@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'The Report Network fana ka ya netweke throughput tlhahisoleseding e mabapi le likarolo tsohle tsa hao ya netweke.';
-$lang['network_report_app_name'] = 'Report Network';
+$lang['network_report_app_description'] = 'The Network Report e fana ka tlhahisoleseding ea ho fetisa marang-rang ho tsohle tsa hau tsa marang-rang.';
+$lang['network_report_app_name'] = 'Tlaleho ea Network';
