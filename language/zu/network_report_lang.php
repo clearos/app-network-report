@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Umbiko Network inikeza inethiwekhi ulwazi throughput on wonke inethiwekhi yakho interface.';
-$lang['network_report_app_name'] = 'Umbiko Network';
+$lang['network_report_app_description'] = 'I-Network Report inikeza ulwazi lokusebenzisa inethiwekhi kuzo zonke izixhumanisi zenethiwekhi yakho.';
+$lang['network_report_app_name'] = 'Umbiko wenethiwekhi';
