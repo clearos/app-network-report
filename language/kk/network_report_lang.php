@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Желілік есеп сіздің барлық желілік интерфейстердің желі өткізу туралы ақпаратты қамтамасыз етеді.';
-$lang['network_report_app_name'] = 'Желілік есеп';
+$lang['network_report_app_description'] = 'Желі туралы есеп барлық желі интерфейстерінде желінің өткізу туралы ақпаратын береді.';
+$lang['network_report_app_name'] = 'Желі туралы есеп';
