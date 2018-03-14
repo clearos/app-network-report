@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Správa Network poskytuje priepustnosť siete informácie o všetkých vašich sieťových rozhraní.';
-$lang['network_report_app_name'] = 'Report Network';
+$lang['network_report_app_description'] = 'Sieťová správa poskytuje informácie o sieti na všetkých sieťových rozhraniach.';
+$lang['network_report_app_name'] = 'Sieťová správa';
