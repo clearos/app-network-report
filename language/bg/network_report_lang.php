@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Докладът за Network осигурява мрежа пропускателна информация за всички ваши мрежови интерфейси.';
-$lang['network_report_app_name'] = 'Доклад Network';
+$lang['network_report_app_description'] = 'Мрежовият отчет предоставя информация за мрежовата производителност на всичките ви мрежови интерфейси.';
+$lang['network_report_app_name'] = 'Отчет за мрежата';
