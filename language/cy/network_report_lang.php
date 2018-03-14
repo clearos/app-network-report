@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Mae Adroddiad y Rhwydwaith yn darparu gwybodaeth trwybwn rhwydwaith ar eich holl rhyngwynebau rhwydwaith.';
-$lang['network_report_app_name'] = 'Adroddiad rhwydwaith';
+$lang['network_report_app_description'] = 'Mae&#39;r Adroddiad Rhwydwaith yn darparu gwybodaeth trwybwn rhwydwaith ar bob rhyngwyneb rhwydwaith.';
+$lang['network_report_app_name'] = 'Adroddiad Rhwydwaith';
