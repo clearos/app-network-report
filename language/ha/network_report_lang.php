@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'The Network Report samar da cibiyar sadarwa kayan da aka samar bayani a kan dukan afaretan cibiyar musaya.';
-$lang['network_report_app_name'] = 'Network Report';
+$lang['network_report_app_description'] = 'Kwamfuta na Kamfanin sadarwa yana samar da bayanan hanyar samar da hanyar sadarwar yanar sadarwa a duk hanyoyin sadarwa naka.';
+$lang['network_report_app_name'] = 'Rukunin cibiyar sadarwa';
