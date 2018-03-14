@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Tinklo ataskaitoje pateikiama tinklo pralaidumo informacija apie visus savo tinklo sąsajų.';
+$lang['network_report_app_description'] = 'Tinklo ataskaitoje pateikiama informacija apie tinklo pralaidumą visose jūsų tinklo sąsajose.';
 $lang['network_report_app_name'] = 'Tinklo ataskaita';
