@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'A Hálózat jelentés biztosítja a hálózati teljesítményt információt az összes hálózati interfész.';
-$lang['network_report_app_name'] = 'hálózati jelentés';
+$lang['network_report_app_description'] = 'A hálózati jelentés hálózati átviteli információkat biztosít minden hálózati interfészen.';
+$lang['network_report_app_name'] = 'Hálózati jelentés';
