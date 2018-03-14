@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Verkosto raportti antaa verkon suorituskykyä tietoa kaikista verkon rajapintoja.';
-$lang['network_report_app_name'] = 'Network Report';
+$lang['network_report_app_description'] = 'Verkkoraportti tarjoaa verkon läpimenon tiedot kaikista verkkoyhteyksistä.';
+$lang['network_report_app_name'] = 'Verkkoraportti';
