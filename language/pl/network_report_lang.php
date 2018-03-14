@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Raport Network zapewnia przepustowość sieci informacje na temat wszystkich interfejsów sieciowych.';
-$lang['network_report_app_name'] = 'Zgłoś Network';
+$lang['network_report_app_description'] = 'Raport sieci dostarcza informacje o przepustowości sieci na wszystkich interfejsach sieciowych.';
+$lang['network_report_app_name'] = 'Raport sieciowy';
