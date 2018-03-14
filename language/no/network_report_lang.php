@@ -1,4 +1,4 @@
 <?php
 
-$lang['network_report_app_description'] = 'Nettverksrapporten gir nettverksgjennomstrømming informasjon om alle nettverksgrensesnitt.';
-$lang['network_report_app_name'] = 'nettverksrapport';
+$lang['network_report_app_description'] = 'Nettverksrapporten gir informasjon om nettverksgjennomgang på alle nettverksgrensesnittene.';
+$lang['network_report_app_name'] = 'Nettverksrapport';
