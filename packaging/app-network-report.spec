@@ -1,23 +1,26 @@
 
 Name: app-network-report
 Epoch: 1
-Version: 2.3.0
+Version: 2.5.0
 Release: 1%{dist}
 Summary: Network Report
 License: GPLv3
-Group: ClearOS/Apps
+Group: Applications/Apps
+Packager: ClearFoundation
+Vendor: ClearFoundation
 Source: %{name}-%{version}.tar.gz
 Buildarch: noarch
 Requires: %{name}-core = 1:%{version}-%{release}
 Requires: app-base
+Requires: app-reports
 
 %description
 The Network Report provides network throughput information on all your network interfaces.
 
 %package core
-Summary: Network Report - Core
+Summary: Network Report - API
 License: LGPLv3
-Group: ClearOS/Libraries
+Group: Applications/API
 Requires: app-base-core
 Requires: app-network-core >= 1:2.0.24
 Requires: app-reports-core >= 1:1.4.8
@@ -75,6 +78,7 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/network_report/packaging
+%exclude /usr/clearos/apps/network_report/unify.json
 %dir /usr/clearos/apps/network_report
 /usr/clearos/apps/network_report/deploy
 /usr/clearos/apps/network_report/language
